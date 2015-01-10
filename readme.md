@@ -35,11 +35,11 @@ app.use(destiny({
 
 // you can also parse an options object as the 2nd or 3rd argument...
 
-destiny('json', function () {}, { defaultHTML: false })
+destiny('json', function () {}, { default: false })
 
 // or
 
-destiny({ json: function () {} }, { defaultHTML: false })
+destiny({ json: function () {} }, { default: false })
 
 ```
 
@@ -56,9 +56,8 @@ following order:
 - text/html
 - default
 
-If none of these mime-types are present then we set a `html` handle as the first format handle,
+If none of these mime-types are present then we set a `default` handle as the first format handle,
 which calls `next()`.
 
-If you would like to disable this you can do so by using `defaultHTML: false` option displayed in
+If you would like to disable this you can do so by using `default: false` option displayed in
 the example above.
-

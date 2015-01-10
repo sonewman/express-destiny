@@ -23,12 +23,12 @@ desc('express-destiny')
 
   var options = this.res.format.firstCall.args[0];
   this.expect(this.res.format.calledOnce).to.be.true()
-  this.expect(Object.keys(options)).deepEquals(['html', 'json'])
+  this.expect(Object.keys(options)).deepEquals(['default', 'json'])
   this.end()
 })
 
-.it('destiny({string}, {function}, {defaultHTML: false})', function () {
-  destiny('json', this.fn, { defaultHTML: false })(this.req, this.res, this.next)
+.it('destiny({string}, {function}, {default: false})', function () {
+  destiny('json', this.fn, { default: false })(this.req, this.res, this.next)
 
   this.expect(this.res.format.calledOnce).to.be.true()
   this.expect(this.res.format.calledWith({ json: this.fn })).to.be.true()
@@ -43,20 +43,20 @@ desc('express-destiny')
   this.end()
 })
 
-.it('destiny({object}, {defaultHTML: false})', function () {
-  destiny({ json: this.fn }, { defaultHTML: false })(this.req, this.res, this.next)
+.it('destiny({object}, {default: false})', function () {
+  destiny({ json: this.fn }, { default: false })(this.req, this.res, this.next)
 
   this.expect(this.res.format.calledOnce).to.be.true()
   this.expect(this.res.format.calledWith({ json: this.fn })).to.be.true()
   this.end()
 })
 
-.it('destiny({object}) adds html if no priority is added', function () {
+.it('destiny({object}) adds default if no priority is added', function () {
   destiny({ json: this.fn })(this.req, this.res, this.next)
 
   this.expect(this.res.format.calledOnce).to.be.true()
   this.expect(this.res.format.calledWith({
-    html: this.match.func,
+    default: this.match.func,
     json: this.fn
   })).to.be.true()
   this.end()

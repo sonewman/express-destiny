@@ -13,7 +13,7 @@ function copy(b, a) {
 }
 
 function defaultHandle(req, res, next) { next() }
-function noDefault(opts) { return opts.defaultHTML !== false }
+function noDefault(opts) { return opts.default !== false }
 
 function organiseconfig(config, opts) {
   config = copy({}, config)
@@ -26,7 +26,7 @@ function organiseconfig(config, opts) {
   }, {})
 
   if (!Object.keys(ret).length && noDefault(opts))
-    config.html = defaultHandle
+    config.default = defaultHandle
 
   return copy(ret, config)
 }
@@ -48,7 +48,7 @@ function handleArgs(args) {
   var key = args[0]
   if (isStr(key) && isFunc(args[1])) {
     if (addDefault(key, args[2]))
-      config.html = defaultHandle
+      config.default = defaultHandle
 
     config[args[0]] = args[1]
 
