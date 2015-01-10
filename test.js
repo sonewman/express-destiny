@@ -14,7 +14,10 @@ desc('express-destiny')
   destiny('text', this.fn)(this.req, this.res, this.next)
 
   this.expect(this.res.format.calledOnce).to.be.true()
-  this.expect(this.res.format.calledWith({ text: this.fn })).to.be.true()
+  this.expect(this.res.format.calledWith({
+    text: this.fn
+    , default: this.match.func
+  })).to.be.true()
   this.end()
 })
 
@@ -39,7 +42,10 @@ desc('express-destiny')
   destiny({ text: this.fn })(this.req, this.res, this.next)
 
   this.expect(this.res.format.calledOnce).to.be.true()
-  this.expect(this.res.format.calledWith({ text: this.fn })).to.be.true()
+  this.expect(this.res.format.calledWith({
+    text: this.fn
+    , default: this.match.func
+  })).to.be.true()
   this.end()
 })
 
@@ -56,20 +62,20 @@ desc('express-destiny')
 
   this.expect(this.res.format.calledOnce).to.be.true()
   this.expect(this.res.format.calledWith({
-    default: this.match.func,
-    json: this.fn
+    default: this.match.func
+    , json: this.fn
   })).to.be.true()
   this.end()
 })
 
 .it('destiny({object}) ordering', function () {
   destiny({
-    json: this.fn,
-    html: this.fn
+    json: this.fn
+    , html: this.fn
   })(this.req, this.res, this.next)
 
   var options = this.res.format.firstCall.args[0];
   this.expect(this.res.format.calledOnce).to.be.true()
-  this.expect(Object.keys(options)).deepEquals(['html', 'json'])
+  this.expect(Object.keys(options)).deepEquals(['html', 'default', 'json'])
   this.end()
 })

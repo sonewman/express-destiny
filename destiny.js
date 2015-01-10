@@ -14,6 +14,9 @@ function copy(b, a) {
 
 function defaultHandle(req, res, next) { next() }
 function noDefault(opts) { return opts.default !== false }
+function addDefault(key, opts) {
+  return key !== 'default' && (!isObj(opts) || noDefault(opts))
+}
 
 function organiseconfig(config, opts) {
   config = copy({}, config)
@@ -25,18 +28,10 @@ function organiseconfig(config, opts) {
     return opts
   }, {})
 
-  if (!Object.keys(ret).length && noDefault(opts))
-    config.default = defaultHandle
+  if ((!Object.keys(ret).length || !config.default) && noDefault(opts))
+    ret.default = defaultHandle
 
   return copy(ret, config)
-}
-
-function isPriority(key) {
-  return priority.some(function (k) { return key === k })
-}
-
-function addDefault(key, opts) {
-  return !isPriority(key) && (!isObj(opts) || noDefault(opts))
 }
 
 function handleArgs(args) {

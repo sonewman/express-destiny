@@ -56,8 +56,7 @@ following order:
 - text/html
 - default
 
-If none of these mime-types are present then we set a `default` handle as the first format handle,
-which calls `next()`.
+No `default` handle is present then we create a default one, which calls `next()`.
 
 If you would like to disable this you can do so by using `default: false` option displayed in
 the example above.
