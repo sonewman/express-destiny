@@ -57,6 +57,7 @@ following order:
 - default
 
 No `default` handle is present then we create a default one, which calls `next()`.
+Usually un the `default` handle you have no access to the `req`, `res`, or `next` however this has been provided as an additional feature.
 
 If you would like to disable this you can do so by using `default: false` option displayed in
 the example above.
