@@ -1,0 +1,28 @@
+{
+  "name": "express-destiny",
+  "version": "0.0.0",
+  "description": "Express helper for dealing with middleware code paths",
+  "main": "destiny.js",
+  "scripts": {
+    "test": "macchiato test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:sonewman/express-destiny.git"
+  },
+  "keywords": [
+    "express",
+    "middleware",
+    "format",
+    "helper"
+  ],
+  "author": "Sam Newman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sonewman/express-destiny/issues"
+  },
+  "homepage": "https://github.com/sonewman/express-destiny",
+  "devDependencies": {
+    "macchiato": "^2.4.0"
+  }
+}
