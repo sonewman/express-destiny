@@ -12,7 +12,10 @@ function copy(b, a) {
   }, b)
 }
 
-function defaultHandle(req, res, next) { next() }
+function defaultHandle(req, res, next) { 
+console.log('default')
+next() 
+}
 function noDefault(opts) { return opts.default !== false }
 function addDefault(key, opts) {
   return key !== 'default' && (!isObj(opts) || noDefault(opts))
@@ -54,6 +57,6 @@ function handleArgs(args) {
 function destiny() {
   var config = handleArgs(arguments)
   return function expressDestiny(req, res, next) {
-    config ? res.format(config) : next()
+    config ? res.format(copy(config, {})) : next()
   }
 }
