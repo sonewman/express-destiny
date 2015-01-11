@@ -1,6 +1,6 @@
 {
   "name": "express-destiny",
-  "version": "3.0.2",
+  "version": "3.1.0",
   "description": "Express helper for dealing with middleware code paths",
   "main": "destiny.js",
   "scripts": {
